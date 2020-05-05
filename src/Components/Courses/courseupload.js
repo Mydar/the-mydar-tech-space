@@ -76,12 +76,8 @@ function CourseUpload(props) {
       const { loaded, total } = event;
 
       let progress = Math.round((loaded * 100.0) / total);
-      setPercent(progress);
-      console.log(
-        `fileuploadprogress data.loaded: ${loaded}, data.total: ${total}`,
-        `Upload Progress: ${percent}%`
-      );
-    };
+      setPercent(progress)
+    }
     xhr.onreadystatechange = function (e) {
       if (xhr.readyState === 4 && xhr.status === 200) {
         let response = JSON.parse(xhr.responseText);
@@ -98,20 +94,20 @@ function CourseUpload(props) {
     fd.append("upload_preset", unsignedUploadPreset);
     fd.append("file", file);
     xhr.send(fd);
-  };
+  }
 
   const handleFiles = (event) => {
     let file = event.target.files[0];
     const { name } = event.target;
     const shouldSaveURLToPhoto = name === "coverimage";
     uploadFile(file, shouldSaveURLToPhoto);
-  };
+  }
 
   const renderRedirect = () => {
     if (redirect) {
       return <Redirect to="./tutordashboard" />;
     }
-  };
+  }
   return (
     <div>
       {renderRedirect()}

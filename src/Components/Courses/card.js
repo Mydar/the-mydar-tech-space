@@ -13,15 +13,19 @@ function Card(props) {
   const filteredCourses = user.hasOwnProperty("favorites") ? user.favorites.filter((id) => +courseId === +id) : null
   
   const handleClick = (event) => {
-    const course = courses.filter((course) => course.id === courseId)
-    props.getCourse(course[0])
-    setRedirect(true)
+    if(isLoggedIn) {
+      const course = courses.filter((course) => course.id === courseId)
+      props.getCourse(course[0])
+      setRedirect(true)
+    } else {
+      alert("You have to be logged In to view the course")
+    }
   }
 
   const renderRedirect = () => {
     if (isLoggedIn && redirect) {
       return <Redirect to="/dashboard/coursepage" />
-    }
+    } 
   }
 
   const addFave = () => {

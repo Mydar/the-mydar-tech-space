@@ -51,12 +51,8 @@ function EditProfile(props) {
             const { loaded, total } = event;
       
             let progress = Math.round((loaded * 100.0) / total);
-            setPercent(progress);
-            console.log(
-              `fileuploadprogress data.loaded: ${loaded}, data.total: ${total}`,
-              `Upload Progress: ${percent}%`
-            );
-          };
+            setPercent(progress)
+          }
         xhr.onreadystatechange = function(e) {
             if (xhr.readyState === 4 && xhr.status === 200) {
               let response = JSON.parse(xhr.responseText)
@@ -66,7 +62,6 @@ function EditProfile(props) {
                 profilePhotoUrl: url
                 
             }))
-            console.log(url)
             }
         }
         fd.append('upload_preset', unsignedUploadPreset)
