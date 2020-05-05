@@ -19,10 +19,12 @@ function Loginform(props) {
   });
 
   const responseGoogle = (response) => {
-    const userEmail = response.profileObj.email;
-    setCheckPassword(false);
-    getUser(userEmail);
-  };
+    if(response.profileObj) {
+      const userEmail = response.profileObj.email;
+      setCheckPassword(false);
+      getUser(userEmail);
+    }
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();

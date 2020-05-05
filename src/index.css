@@ -112,8 +112,8 @@ code {
   transition: transform .2s linear;
 }
 .tutorcard {
-  width: 230px;
-  height: 280px;
+  width: 250px;
+  height: 300px;
   border: 1px solid #b61c1c;
   border-radius: 10px;
   margin-right: 20px;

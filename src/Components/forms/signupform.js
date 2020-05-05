@@ -79,19 +79,21 @@ function SignUpForm() {
     }
 
     const responseGoogle = (response) => {
-        const userEmail = response.profileObj.email
-        const userFirstname = response.profileObj.givenName
-        const userLastname = response.profileObj.familyName
-        const userImage = response.profileObj.imageUrl
-        setInput(input => ({
-            ...input, 
-            email: userEmail,
-            firstname: userFirstname,
-            lastname: userLastname,
-            profilePhotoUrl: userImage
-        }))
-        setShowPassword(false)
-        getUser(userEmail)
+        if(response.profileObj) {
+            const userEmail = response.profileObj.email
+            const userFirstname = response.profileObj.givenName
+            const userLastname = response.profileObj.familyName
+            const userImage = response.profileObj.imageUrl
+            setInput(input => ({
+                ...input, 
+                email: userEmail,
+                firstname: userFirstname,
+                lastname: userLastname,
+                profilePhotoUrl: userImage
+            }))
+            setShowPassword(false)
+            getUser(userEmail)
+        }
     }
 
     const handleSubmit = (event) => {
@@ -153,6 +155,7 @@ function SignUpForm() {
                                 placeholder="firstname" 
                                 id="firstname" 
                                 className="form-control"
+                                required
                             />
                         </div>
                         <div className="form-group">
@@ -165,6 +168,7 @@ function SignUpForm() {
                                 placeholder="lastname" 
                                 id="lastname" 
                                 className="form-control"
+                                required
                             />
                         </div>
                         <div className="form-group">
@@ -177,34 +181,39 @@ function SignUpForm() {
                                 placeholder="email" 
                                 id="email"
                                 className="form-control"
+                                required
                             />
                         </div>
-                        <div style={showPassword ? {display: "block"} : {display: "none"}}>
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input 
-                                type="password" 
-                                name="password" 
-                                value={input.password} 
-                                onChange={handlePassword} 
-                                placeholder="password" 
-                                id="password" 
-                                className="form-control" 
-                            />
+                        {showPassword && (
+                        <div>
+                            <div className="form-group">
+                                <label>Password</label>
+                                <input 
+                                    type="password" 
+                                    name="password" 
+                                    value={input.password} 
+                                    onChange={handlePassword} 
+                                    placeholder="password" 
+                                    id="password" 
+                                    className="form-control" 
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Confirm Password</label>
+                                <input 
+                                    type="password" 
+                                    name="confirmPassword" 
+                                    value={confirmPassword} 
+                                    onChange={handleChange} 
+                                    placeholder="confirmpassword" 
+                                    id="confirmpassword" 
+                                    className="form-control" 
+                                    required
+                                />
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label>Confirm Password</label>
-                            <input 
-                                type="password" 
-                                name="confirmPassword" 
-                                value={confirmPassword} 
-                                onChange={handleChange} 
-                                placeholder="confirmpassword" 
-                                id="confirmpassword" 
-                                className="form-control" 
-                            />
-                        </div>
-                        </div>
+                        )}
                         <div className="form-group">
                             <label>Are you a student or a tutor?</label>
                             <select 

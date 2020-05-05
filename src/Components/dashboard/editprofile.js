@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
 import Axios from 'axios'
+import ProgressBar from "bootstrap-progress-bar";
 
 function EditProfile(props) {
     const user = props.user
@@ -23,6 +24,7 @@ function EditProfile(props) {
           }
     )
     const [ redirect, setRedirect ] = useState(false)
+    const [percent, setPercent] = useState(0);
     
     const renderRedirect = () => {
         if (redirect && user.Designation === "Student") {
@@ -45,6 +47,16 @@ function EditProfile(props) {
         let fd = new FormData()
         xhr.open('POST', url, true)
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+        xhr.upload.onprogress = (event) => {
+            const { loaded, total } = event;
+      
+            let progress = Math.round((loaded * 100.0) / total);
+            setPercent(progress);
+            console.log(
+              `fileuploadprogress data.loaded: ${loaded}, data.total: ${total}`,
+              `Upload Progress: ${percent}%`
+            );
+          };
         xhr.onreadystatechange = function(e) {
             if (xhr.readyState === 4 && xhr.status === 200) {
               let response = JSON.parse(xhr.responseText)
@@ -52,7 +64,9 @@ function EditProfile(props) {
               setInput(input => ({
                 ...input, 
                 profilePhotoUrl: url
+                
             }))
+            console.log(url)
             }
         }
         fd.append('upload_preset', unsignedUploadPreset)
@@ -88,10 +102,15 @@ function EditProfile(props) {
                 <div className="google-signup formdiv">
                     <div className="form-group">
                         <div>
+                        {input.profilePhotoUrl && (
                             <div className="img-div mb-2"  style={{width: 300, height: 300}}>
                                 <img src={input.profilePhotoUrl} alt={`${input.firstname} ${input.lastname}`} />
                             </div>
+                        )}
                         <input name="coverimage" type="file" accept="image/*" onChange={handleFiles} />
+                        {percent > 0 && percent < 100 && (
+                            <ProgressBar now={percent} active label={`${percent}%`} />
+                        )}
                         </div>
                     </div>
                 </div>
