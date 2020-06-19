@@ -1,12 +1,13 @@
 import React from 'react'
-import {Helmet} from "react-helmet"
-import Slideshow from '../Home/slides'
+import { Helmet } from "react-helmet"
 import Guidelines from './guideline'
 import Footer from '../Footer/footer'
-import TutorReviews from './tutreview'
+import TutorReviews from '../Reviews/tutreview'
+import './beatutor.css'
+import Tutors from '../Home/tutor'
 
 function BeATutor() {
-    return(
+    return (
         <div>
             <Helmet>
                 <meta charset="UTF-8" />
@@ -15,8 +16,11 @@ function BeATutor() {
                 <meta name="description" content="The Tutors registration page for the Mydar Tech Space Academy for software developers" />
                 <title>The Mydar Tech Space | Be A Tutor</title>
             </Helmet>
-            <Slideshow />
+            <div className="beatutor-introduction"></div>
             <Guidelines />
+            <div style={{backgroundColor: "rgb(17, 17, 17)"}}>
+                <Tutors />
+            </div>
             <TutorReviews />
             <Footer />
         </div>

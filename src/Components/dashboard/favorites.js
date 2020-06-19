@@ -1,35 +1,53 @@
-import React from "react";
-import Card from "../Courses/card";
-import Slideshow from "../Home/slides";
-import Dashnav from "./dashnav";
-import Footer from "../Footer/footer";
-import { connect } from "react-redux";
-import Tutorsnav from "./tutorsnav";
-import {Link} from 'react-router-dom'
+import React from 'react'
+import Card from '../Courses/card'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
+import WelcomeNote from './welcomenote'
+import Footer from '../Footer/footer'
+import FavoritesIcon from '../../Images/favorite-icon.png'
 
-function Favorites(props) {
-  const user = props.user
-  const designation = user.Designation
-  const allCourses = props.courses
-  const userFavoriteCourses = user.favorites.map((favoriteCourseId) => allCourses.find((course) => course.id === favoriteCourseId))
-  
-  const cardComp = userFavoriteCourses.map((favorite) => (<Card cardObj={favorite} />))
-  const noCourse = <p>You have no favorite courses yet, check <Link to="/courses" >Courses</Link> to view courses to add</p>
+function Usercourses(props) {
+  const userFavoriteCourses = props.user.favorites.map((courseId) => props.courses.find((course) => course.id === courseId))
+  const favorites = userFavoriteCourses.map((course, index) => <Card key={index} cardObj={course} />)
+  const noFavoriteCourse = <p className="no-course text-center p-3">There are no favorite courses yet, check <Link to="/courses" >Courses</Link> to view available courses</p>
 
   return (
     <div>
-      <Slideshow />
-      <div className="d-flex">
-        {designation === "Student" ? <Dashnav /> : <Tutorsnav />}
-        <div className="cards-container">{userFavoriteCourses.length === 0 ? noCourse : cardComp}</div>
+      <Helmet>
+        <meta charset="UTF-8" />
+        <link rel="icon" href="./Favicon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="The student dashboard for the Mydar Tech Space Academy for software developers" />
+        <title>The Mydar Tech Space | Dashboard Courses</title>
+      </Helmet>
+      <WelcomeNote user={props.user} />
+      <div>
+        <div className="dashboard-headers pt-4">
+          <p>Favorite Courses <img style={{ width: "25px", height: "25px" }} src={FavoritesIcon} alt="user favorite programming courses" /></p>
+          <div style={{ display: "flex" }}>
+            <Link to="/dashboard" ><p style={{ color: "red" }}>Go back</p></Link>
+            <div style={{ width: "50px" }}></div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div className="dashboard-dots"></div>
+              <div className="dashboard-dots"></div>
+              <div className="dashboard-dots"></div>
+            </div>
+          </div>
+        </div>
+        <div className="cards-container">
+          {props.user.favorites.length === 0 ? noFavoriteCourse : favorites}
+        </div>
       </div>
       <Footer />
     </div>
-  );
+  )
 }
-const matchStateToProps = (state) => ({
-  user: state.user,
-  courses: state.courses,
-});
 
-export default connect(matchStateToProps)(Favorites);
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    courses: state.courses
+  }
+}
+export default connect(mapStateToProps)(Usercourses)

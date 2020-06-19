@@ -1,0 +1,30 @@
+.formContainer {
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 0, .8),rgba(0, 0, 0, .8)), url('https://www.sterlingcheck.com/wp-content/uploads/2018/09/new-guidance-on-background-screening-pointing-to-presentations-on-desk-1523-595x525.jpg');
+    background-attachment: scroll;
+    background-size: cover;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+  }
+  .formdiv {
+    padding: 10px 25px 10px 25px;
+    width: 500px;
+    margin-top: 50px;
+  }
+  .google-signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .my-signup {
+    box-shadow: 5px 5px 5px #a1a1a1;
+    padding: 10px 5px;
+    border: 2px dotted #a1a1a1;
+    border-radius: 10px;
+    
+  }

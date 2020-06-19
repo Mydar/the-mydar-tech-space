@@ -1,0 +1,87 @@
+.footer-div {
+  display: flex;
+  box-shadow: -2px 0px 10px #222222;
+}
+.footer-logo {
+  padding: 5px;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.863);
+  height: 80px;
+  transform: skewX(-5deg);
+  box-shadow: 5px 5px 5px #222222;
+}
+.footer-logo p {
+  font-size: 25px;
+  font-weight: bolder;
+  color: #EEE8AA;
+  text-align: center;
+}
+.footer-logo-brand {
+  font-family: 'Piedra', cursive;
+  color: #DAA520;
+}
+.footer-content {
+  width: 70%;
+}
+.social-media-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+  .social-media-list li {
+    font-size: 30px;
+  }
+  .btn-circle {
+    border-radius: 50%;
+  }
+  .fab {
+    color: white;
+  }
+  
+  .footer-text ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .footer-text ul li {
+    list-style: none;
+    color: white;
+    padding: 10px;
+  }
+  .footer-text-separator {
+    color: white;
+    padding: 10px;
+  }
+  .footer-text ul li:hover {
+    color: rgb(168, 166, 166);
+    text-decoration: none;
+  }
+  .copyright ul {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .copyright ul li {
+    list-style: none;
+    
+  }
+  @media (max-width: 900px) {
+    .footer-div {
+      flex-direction: column;
+    }
+    .footer-content {
+      width: 100%;
+    }
+    .footer-logo {
+      padding: 5% 5px;
+    }
+    .footer-text ul {
+      flex-direction: column;
+      text-align: center;
+    }
+    .footer-text-separator {
+      display: none;
+    }
+    .footer-logo p {
+      font-size: 20px;
+    }
+}

@@ -1,90 +1,60 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import Axios from "axios";
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts'
 
 function Card(props) {
   const [redirect, setRedirect] = useState(false)
   const courseId = props.cardObj.id
   const isLoggedIn = props.isLoggedIn
   const user = props.user
-  const userID = user.id
   const courses = props.courses
-  const filteredCourses = user.hasOwnProperty("favorites") ? user.favorites.filter((id) => +courseId === +id) : null
-  
+
+
   const handleClick = (event) => {
-    if(isLoggedIn) {
+    if (isLoggedIn) {
       const course = courses.filter((course) => course.id === courseId)
       props.getCourse(course[0])
       setRedirect(true)
     } else {
-      alert("You have to be logged In to view the course")
+      ToastsStore.error("You have to be logged In to view the course")
     }
   }
 
   const renderRedirect = () => {
     if (isLoggedIn && redirect) {
-      return <Redirect to="/dashboard/coursepage" />
-    } 
-  }
-
-  const addFave = () => {
-    if (isLoggedIn) {
-      if (filteredCourses.length === 0) {
-        user.favorites.push(courseId);
-        Axios.put(`https://myjsondb.herokuapp.com/Students/${userID}`, {
-          ...user,
-        })
-      } else {
-          alert("Course already exists as favorite")
-      }
-    } else {
-      alert("You have to be logged In to add course to favorites")
+      return <Redirect to="./dashboard_coursepage" />
     }
   }
-
-  const removeFave = () => {
-    if (isLoggedIn) {
-      if (filteredCourses.length !== 0) {
-        const newcourses = user.favorites.filter((userfavorite) => userfavorite !== courseId)
-        user.favorites = newcourses
-        Axios.put(`https://myjsondb.herokuapp.com/Students/${userID}`, {
-          ...user,
-        })
-      }
-    } else {
-      alert("You have to be logged In to remove course from favorite")
-    }
-  }
+  let randomColor = require('randomcolor')
+  let color = randomColor({
+    luminosity: 'dark',
+    hue: 'monochrome'
+  })
 
   return (
-    <div className="card">
+    <div className="course-card-container m-5">
       {renderRedirect()}
-      <div className="img-div">
-        <img src={props.cardObj.photoUrl} alt={props.cardObj.title} />
-      </div>
-      <div className="img-description">
-        <p>
-          <strong>{props.cardObj.title}</strong>
-          <br />
-          <strong>Hours of Coursework: </strong>{props.cardObj.Hours} 
-          <br />
-          <strong>Rating:</strong> {props.cardObj.Rating} Stars
-        </p>
-      </div>
-      <div>
-        <button className="btn btn-outline-warning mb-sm-2" type="button" onClick={handleClick}> View Course </button>
-      </div>
-      {filteredCourses === null ? <div></div> : 
-        <div >
-        {filteredCourses.length === 0 && filteredCourses !== null ? 
-          <button className="btn btn-warning mb-sm-2" type="button" onClick={addFave}>Add to favorites</button> :
-          <button className="btn btn-warning mb-sm-2" type="button" onClick={removeFave}>Remove favorite</button>
-        }
+      <ToastsContainer position={ToastsContainerPosition.TOP_LEFT} store={ToastsStore} />
+      <div className="course-card">
+        <div className="course-card-cover">
+          <div className="course-card-img-div" style={{backgroundPosition: "center center", backgroundSize: "cover", backgroundImage: `url(${props.cardObj.photoUrl})`}}></div>
+          <div className="course-card-title-div">
+            <h1>{props.cardObj.title}</h1>
+          </div>
         </div>
-      }
-      
-       </div>
+        <div className="course-card-hover text-center" style={{ backgroundColor: color }}>
+          <div className="course-card-text-div px-3 py-2">
+            <p className="pb-2" style={{borderBottom: "1px solid #EEE8AA", fontSize: "20px"}}>{props.cardObj.title}</p>
+            <p>{props.cardObj.description.slice(0, 150)}...</p>
+            <p>Course Duration: {props.cardObj.Hours}</p>
+          </div>
+          <div className="course-card-btn-div">
+            <p className="pb-2" style={{color: "#EEE8AA", borderBottom: "1px solid #EEE8AA"}} onClick={() => handleClick()}> View complete course </p>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 

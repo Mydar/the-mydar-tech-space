@@ -23,7 +23,7 @@ function Coursecard(props) {
       fetchData()
   }, [])
 
-  const coursesComp = isLoading ? "Loading..." : courses.map((course, index) => (<Card key={index} cardObj={course} />))
+  const coursesComp = isLoading ? <div className="loader">Loading...</div> : courses.map((course, index) => (<Card key={index} cardObj={course} />))
   
   return (
   <div className="cards-container">

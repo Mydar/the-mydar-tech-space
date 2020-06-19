@@ -5,10 +5,10 @@ import Courses from '../Courses/courses'
 import BeATutor from '../Be-A-Tutor/be-a-tutor'
 import SignUpForm from '../forms/signupform'
 import Loginform from '../forms/loginform';
-import Dashboard from '../forms/dashboard';
-import Tutdashboard from '../forms/tutdashboard';
+import Dashboard from '../dashboard/dashboard';
+import Tutdashboard from '../dashboard/tutdashboard';
 import Usercourses from '../dashboard/usercourses';
-import Coursepage from '../Courses/coursepage'
+import Coursepage from '../coursepage/coursepage'
 import Userprofile from '../dashboard/profile'
 import Favorites from '../dashboard/favorites';
 import {
@@ -21,15 +21,14 @@ edit_profile,
 be_a_tutor,
 login_form,
 signup_form,
-student_dashboard,
-tutor_dashboard,
+dashboard,
 course_upload
 } from './links'
 import CourseUpload from '../Courses/courseupload'
 import EditProfile from '../dashboard/editprofile'
 import {connect} from 'react-redux'
-import AboutUs from '../Home/aboutus'
-import Contact from '../Home/contact'
+import AboutUs from '../About-us/aboutus'
+import Contact from '../Contact/contact'
 
  
 const Routes = (props) => {
@@ -40,13 +39,12 @@ const Routes = (props) => {
         <Route path={be_a_tutor}><BeATutor /></Route>
         <Route path={signup_form}>{!isLoggedIn ? <SignUpForm /> : <Redirect to='./'/>}</Route>
         <Route path={login_form}>{!isLoggedIn ? <Loginform /> : <Redirect to='./'/>}</Route>
-        <Route path={student_dashboard}>{isLoggedIn ? <Dashboard /> : <Redirect to='./' />}</Route>
-        <Route path={tutor_dashboard}>{isLoggedIn ? <Tutdashboard /> : <Redirect to='./' />}</Route>
-        <Route path={dashboard_courses}>{isLoggedIn ? <Usercourses /> : <Redirect to='../' />}</Route>
-        <Route path={dashboard_coursepage}>{isLoggedIn ? <Coursepage /> : <Redirect to='../' />}</Route>
-        <Route path={dashboard_profile}>{isLoggedIn ? <Userprofile /> : <Redirect to='../' />}</Route>
-        <Route path={dashboard_favorites}>{isLoggedIn ? <Favorites /> : <Redirect to='../' />}</Route>
-        <Route path={edit_profile}>{isLoggedIn ? <EditProfile /> : <Redirect to='../' />}</Route>
+        <Route path={dashboard}>{isLoggedIn ? <Dashboard /> : <Redirect to='./' />}</Route>
+        <Route path={dashboard_courses}>{isLoggedIn ? <Usercourses /> : <Redirect to='./' />}</Route>
+        <Route path={dashboard_coursepage}>{isLoggedIn ? <Coursepage /> : <Redirect to='./' />}</Route>
+        <Route path={dashboard_profile}>{isLoggedIn ? <Userprofile /> : <Redirect to='./' />}</Route>
+        <Route path={dashboard_favorites}>{isLoggedIn ? <Favorites /> : <Redirect to='./' />}</Route>
+        <Route path={edit_profile}>{isLoggedIn ? <EditProfile /> : <Redirect to='./' />}</Route>
         <Route path={course_upload}>{isLoggedIn ? <CourseUpload/> : <Redirect to='./' />}</Route>
         <Route path="/aboutus"><AboutUs /></Route>
         <Route path="/contact"><Contact /></Route>

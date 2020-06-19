@@ -105,15 +105,14 @@ function CourseUpload(props) {
 
   const renderRedirect = () => {
     if (redirect) {
-      return <Redirect to="./tutordashboard" />;
+      return <Redirect to="./dashboard" />;
     }
   }
   return (
     <div>
       {renderRedirect()}
-      <Slideshow />
-      <div className="edit_pages mt-5">
-        <div className="mt-3">
+      <div className="formContainer py-5">
+        <div className="my-signup formdiv">
           <form onSubmit={handleSubmit} method="POST">
             <div className="form-group">
               <label>Course Title</label>

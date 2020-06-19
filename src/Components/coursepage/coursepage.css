@@ -1,0 +1,71 @@
+.coursepage-intro-div {
+    height: 60vh;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.coursepage-intro-div h1 {
+    font-size: 55px;
+    color: 	#FAFAD2;
+    text-align: center;
+    padding: 10px;
+}
+.course-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 60%;
+    height: auto;
+    margin: 100px auto;
+    color: 	#FAFAD2;
+    font-size: 20px;
+    border-left: 1px solid rgb(20, 20, 20);
+    border-right: 1px solid rgb(20, 20, 20);
+}
+.coursepage-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid rgb(20, 20, 20);
+}
+.coursevid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    width: 100%;
+  }
+.related-courses-div {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.wallpaperscraft.com/image/code_text_colorful_140555_2560x1600.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
+}
+.related-courses-div p {
+    color: #FAFAD2;
+    text-align: center;
+    font-weight: bolder;
+}
+.divider {
+    margin: 30px 0;
+    border-top: 1px solid rgb(20, 20, 20);
+}
+@media (max-width: 900px) {
+    .course-content {
+        width: 95%;
+        margin: 50px auto;
+    }
+    .coursepage-intro-div h1 {
+        font-size: 30px;
+    }
+}

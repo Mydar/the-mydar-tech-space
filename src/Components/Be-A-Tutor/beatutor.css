@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Piedra&display=swap');
+.beatutor-introduction {
+    background-image: url('../../Images/beatutor.jpeg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 70vh;
+    margin-top: 50px;
+}
+
+/*guideline*/
+.guide-description {
+    color: whitesmoke;
+}
+.guide-description h2 {
+    font-family: 'Piedra', cursive;
+    padding: 20px;
+}
+.guide-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .guides-container {
+    width: 50vw;
+  }
+  .step-diagram {
+    width: 70px;
+    height: 70px;
+    margin: 20px auto;
+    overflow: hidden;
+  }
+  .step-diagram img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  @media (max-width: 900px) {
+    .beatutor-introduction {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top;
+        height: 30vh;
+  }
+  .guides-container {
+    width: 100%;
+  }
+}
+
+/*tutors review*/
+.tutors-revCard {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,16 +1,17 @@
 import React from 'react'
 import {Helmet} from "react-helmet"
-import Slideshow from './slides'
+import './home.css'
 import Ribbon from './ribbon'
-import Tutors from '../Be-A-Tutor/tutor'
+import Tutors from './tutor'
 import Footer from '../Footer/footer'
-import TutorReviews from '../Be-A-Tutor/tutreview'
-import StudentReviews from '../Students/stdreview'
-import Homecoursecard from '../Courses/homecoursecard'
+import HomeTutor from './hometutor'
+import Homecourses from './homecourses'
+import LearnWithUs from './learnwithus'
+import HomeReviews from './homereviews'
 
 function Home() {
     return(
-        <div>
+        <div class="Home">
             <Helmet>
                 <meta charset="UTF-8" />
                 <link rel="icon" href="./Favicon.png" />
@@ -18,16 +19,23 @@ function Home() {
                 <meta name="description" content="The Home page for the Mydar Tech Space Academy for software developers" />
                 <title>The Mydar Tech Space | Home</title>
             </Helmet>
-            <Slideshow />
-            <hr />
-            <h4>Available Courses</h4>
-            <Homecoursecard />
+            <LearnWithUs />
+            <div style={{backgroundColor: "black"}}>
+                <div className="courses-container" >
+                    <p>EXPLORE THE WORLD OF SOFTWARE DEVELOPMENT...</p>
+                </div>
+                <Homecourses />
+            </div>
             <Ribbon />
-            <h4>Some of the Tutors</h4>
-            <Tutors />
-            <div className="reviews-container">
-                <TutorReviews />
-                <StudentReviews />
+            <HomeTutor />
+            <div style={{backgroundColor: "rgb(17, 17, 17)"}}>
+                <div className="tutors-container" >
+                    <p style={{color: "white"}}>Meet our tutors</p>
+                </div>
+                <Tutors />
+            </div>
+            <div className="reviews-container p-5">
+                <HomeReviews />
             </div>
             <Footer />
         </div>

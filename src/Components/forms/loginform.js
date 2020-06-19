@@ -5,16 +5,18 @@ import GoogleLogin from "react-google-login";
 import { signup_form } from "../Routing/links";
 import { connect } from "react-redux";
 import {Helmet} from "react-helmet"
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts'
+import Footer from '../Footer/footer'
+import './forms.css'
 
 function Loginform(props) {
-  const [userInfo, setUserInfo] = useState({});
   const [checkPassword, setCheckPassword] = useState(false);
+  const [responseStatus, setResposeStatus] = useState(0);
   const [input, setInput] = useState({
     students: [],
     tutors: [],
     email: "",
     password: "",
-    user: "",
     redirect: false,
   });
 
@@ -28,16 +30,31 @@ function Loginform(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getUser(input.email);
+    setCheckPassword(true)
+    let re = /^\w+([.-]?w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    if(input.email.length === 0) {
+      ToastsStore.error("Please input your email")
+    }
+    else if (input.password.length === 0) {
+      ToastsStore.error("Please input your password")
+    }
+    else if ( !re.test(input.email) ) {
+      ToastsStore.error("Invalid Email Format!!!")
+    }
+    else{
+      getUser(input.email);
+    }
   };
 
   const handleChange = (event) => {
-    const { name, value, type } = event.target;
-    type === "password" ? setCheckPassword(true) : setCheckPassword(false);
+    const { name, value} = event.target;
     setInput((input) => ({
       ...input,
       [name]: value,
     }));
+    if (name === "password") {
+      setCheckPassword(true)
+    }
   };
 
   useEffect(() => {
@@ -47,6 +64,9 @@ function Loginform(props) {
         ...input,
         students: Response.data,
       }));
+      if (Response.status === 200) {
+        setResposeStatus(Response.status)
+      }
     };
     const fetchTutorData = async () => {
       const Response = await axios("https://myjsondb.herokuapp.com/Tutors");
@@ -60,57 +80,46 @@ function Loginform(props) {
   }, []);
 
   const getUser = (email) => {
-    const studentWithInputEmail = input.students.filter((student) => {
-      return student.email === email
-    })
-    const tutorWithInputEmail = input.tutors.filter((tutor) => {
-      return tutor.email === email
-    })
+    const studentWithInputEmail = input.students.filter((student) => student.email === email)
+    const tutorWithInputEmail = input.tutors.filter((tutor) => tutor.email === email)
 
     const user = studentWithInputEmail.length !== 0 ? studentWithInputEmail[0] : tutorWithInputEmail.length !== 0 ? tutorWithInputEmail[0] : null
-    setUserInfo(user)
-
+    
     if (user !== null && checkPassword) {
       checkUserPassword(user)
     } else if (user != null && !checkPassword) {
       confirmLogin(user)
+    } else if (responseStatus !== 200) {
+      ToastsStore.error("ERROR! check your internet connection")
     } else {
-      alert("user does not exist");
+      ToastsStore.error("User does not exist, click SIGN UP to register")
     }
   };
 
   const checkUserPassword = (user) => {
     const password = input.password
-    password === user.password ? confirmLogin(user) : alert("Incorrect Password")
+    password === user.password ? confirmLogin(user) : ToastsStore.error("Incorrect Password")
   }
 
   const confirmLogin = (user) => {
     props.login(user)
-    if (user.Designation === "Student") {
-      setInput((input) => ({
+    setInput((input) => ({
         ...input,
-        user: "student",
         redirect: true,
       }))
-    } else if (user.Designation === "Tutor") {
-      setInput((input) => ({
-        ...input,
-        user: "tutor",
-        redirect: true,
-      }))
-    }
   }
+  
   const renderRedirect = () => {
-    const { redirect, user } = input
-    if (redirect && user === "student") {
-      return <Redirect to="./studentdashboard" />;
-    } else if (redirect && user === "tutor") {
-      return <Redirect to="./tutordashboard" />;
+    const { redirect } = input
+    if (redirect) {
+      ToastsStore.success("You are now logged in!")
+      return <Redirect to="./dashboard" />
     }
   }
   return (
     <div>
       {renderRedirect()}
+      <ToastsContainer position={ToastsContainerPosition.TOP_LEFT} store={ToastsStore} />
       <Helmet>
         <meta charset="UTF-8" />
         <link rel="icon" href="./Favicon.png" />
@@ -134,7 +143,6 @@ function Loginform(props) {
                 placeholder="email"
                 id="email"
                 className="form-control"
-                required
               />
             </div>
             <div className="form-group">
@@ -147,7 +155,6 @@ function Loginform(props) {
                 placeholder="password"
                 id="password"
                 className="form-control"
-                required
               />
             </div>
             <div className="google-signup form-group">
@@ -172,6 +179,7 @@ function Loginform(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
@@ -189,3 +197,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Loginform);
+

@@ -1,8 +1,9 @@
 import React from 'react'
 import {Helmet} from "react-helmet"
-import Coursenav from './coursenav'
 import Coursecard from './coursecard'
 import Footer from '../Footer/footer'
+import CoursesIntroduction from './coursesintroduction'
+import CoursesCategories from './coursescategories'
 
 function Courses() {
    return(
@@ -14,7 +15,8 @@ function Courses() {
                 <meta name="description" content="The Programing Courses page for the Mydar Tech Space Academy for software developers" />
                 <title>The Mydar Tech Space | Courses</title>
             </Helmet>
-            <Coursenav />
+            <CoursesIntroduction />
+            <CoursesCategories />
             <Coursecard />
             <Footer />
         </div>

@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Piedra&display=swap');
+* {
+    padding: 0px;
+    margin: 0px;
+  }
+  body {
+      background-color: black;
+  }
+.home-img {
+    background-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0.9), rgba(0,0,0,0.7), rgba(0,0,0,0.5), rgba(0,0,0,0)), url('../../Images/homeimg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+}
+.courses-container {
+    font-family: 'Piedra';
+    font-size: 30px;
+    padding: 30px;
+    color: 	#FAFAD2;
+    border-bottom: 1px solid #DAA520;
+}
+.tutors-container {
+    font-weight: bolder;
+    font-size: 30px;
+    padding: 30px;
+    color: 	black;
+    text-align: center;
+}
+.the-home-sxn {
+    width: 50vw;
+    padding: 10vh;
+    font-size: 20px;
+}
+.the-home-sxn h1 {
+    font-family: 'Piedra';
+    font-size: 50px;
+}
+.home-course-card {
+    width: 350px;
+    height: 500px;
+    color: white;
+    padding: 20px;
+    transition: transform .2s linear;
+}
+.home-course-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform .2s linear;
+}
+.home-course-img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.home-course-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.home-course-title{
+    padding: 20px;
+    color: #DAA520;
+    font-weight: bolder;
+}
+.ribbon-title {
+    font-family: 'Piedra';
+    color: #DAA520;
+    padding: 20px;
+    font-size: 50px;
+}
+.ribbon-text {
+    background-image: url('../../Images/techspacegif.gif');
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    font-size: 45px;
+    height: 150px;
+}
+ .hometutor-div{
+    display: flex;
+    padding: 5%;
+    justify-content: flex-end;
+    align-items: center;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    
+}
+.hometutor-text-div {
+    width: 500px;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: auto;
+    font-size: 20px;
+    color: #FAFAD2;
+}
+.hometutor-heading {
+    font-family: 'Piedra';
+    font-size: 30px;
+}
+.hometutor-text-button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hometutor-text-button-div button {
+  text-align: center;
+  border-radius: 0;
+}
+.tutorcard {
+    width: 350px;
+    height: 500px;
+    text-align: center;
+    padding: 20px;
+}
+.tutor-img-div {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-radius: 50%;
+}
+  .tutor-img-div img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+  .reviews-container, .revCard {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+   
+  }
+  .rev-card {
+    border-right: 1px solid rgb(37, 37, 37);
+    width: 300px;
+    margin-right: 20px;
+    margin-bottom: 50px;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    transition: transform .2s linear;
+  }
+  .rev-card:hover {
+    transform: scale(1.1);
+  }
+
+  /* loader on all pages */
+  .loader {
+    color: #ffffff;
+    font-size: 90px;
+    text-indent: -9999em;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin: 72px auto;
+    position: relative;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+    animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+  }
+  @-webkit-keyframes load6 {
+    0% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    5%,
+    95% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    10%,
+    59% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+    }
+    20% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+    }
+    38% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+    }
+    100% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+  }
+  @keyframes load6 {
+    0% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    5%,
+    95% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    10%,
+    59% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+    }
+    20% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+    }
+    38% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+    }
+    100% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+  }
+  @-webkit-keyframes round {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes round {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+
+  /* end of loader */
+  
+  @media (max-width: 900px) {
+    .home-img{
+        background-size: contain;
+    }
+    .the-home-sxn {
+        width: 100%;
+        padding: 10px;
+        font-size: 20px;
+    }
+    .the-home-sxn h1 {
+        font-size: 40px;
+    }
+    .the-home-sxn {
+        width: 100%;
+    }
+    .hometutor-div {
+        flex-direction: column;
+        height: auto;
+    }
+    .hometutor-img-div{
+        width: 100%
+    }
+    .hometutor-text-div{
+        width: 100%
+    }
+    .copyright ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    .ribbon-text {
+        height: 200px;
+    }
+  }

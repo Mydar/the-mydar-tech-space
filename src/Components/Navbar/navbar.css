@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Piedra&display=swap');
+.brand-name {
+    color: #DAA520;
+    font-family: 'Piedra';
+  }
+.navbar {
+    background-color: rgba(0, 0, 0, 0.863);
+    box-shadow: 5px 0px 10px #a1a1a1;
+} 
+.navbar-brand-text {
+    color: #FAFAD2;
+}
+.navbar-brand-text:hover {
+    color: #FAFAD2;
+}
+.navbar-text {
+    color: #FAFAD2;
+}
+.navbar-text:hover {
+    border-bottom: 1px solid #FAFAD2;
+    color: #FAFAD2;
+}

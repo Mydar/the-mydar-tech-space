@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
 import Axios from 'axios'
 import ProgressBar from "bootstrap-progress-bar";
+import Footer from '../Footer/footer'
+import { ToastsContainer, ToastsStore, ToastsContainerPosition } from 'react-toasts'
 
 function EditProfile(props) {
     const user = props.user
@@ -27,11 +29,8 @@ function EditProfile(props) {
     const [percent, setPercent] = useState(0);
     
     const renderRedirect = () => {
-        if (redirect && user.Designation === "Student") {
-            return <Redirect to='/studentdashboard' />
-        }
-        if (redirect && user.Designation === "Tutor") {
-            return <Redirect to='/tutordashboard' />
+        if (redirect) {
+            return <Redirect to='/dashboard' />
         }
     }
     const handleChange = (event) => {
@@ -40,6 +39,7 @@ function EditProfile(props) {
             ...input, 
             [name]: value
         }))
+        
     }
     const uploadFile = (file) => {
         let url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
@@ -77,15 +77,17 @@ function EditProfile(props) {
     }
     const handleSubmit = (event) => {
         event.preventDefault()
-        if(user.Designation === "Student") {
+         if(user.Designation === "Student") {
             Axios.put(`https://myjsondb.herokuapp.com/Students/${userID}`, {...input,})
             .then((res) => {
                 props.updateUser(input)
+                ToastsStore.success("changes have been made successfully")
             })
         } else if(user.Designation === "Tutor") {
             Axios.put(`https://myjsondb.herokuapp.com/Tutors/${userID}`, {...input,})
             .then((res) => {
                 props.updateUser(input)
+                ToastsStore.success("changes have been made successfully")
             })
         }
         setRedirect(true)
@@ -93,7 +95,8 @@ function EditProfile(props) {
     return (
         <div>
             {renderRedirect()}
-            <div className="formContainer">
+            <ToastsContainer position={ToastsContainerPosition.TOP_LEFT} store={ToastsStore} />
+            <div className="formContainer py-5">
                 <div className="google-signup formdiv">
                     <div className="form-group">
                         <div>
@@ -109,7 +112,7 @@ function EditProfile(props) {
                         </div>
                     </div>
                 </div>
-                <div className="my-signup formdiv">
+                <div className="my-signup formdiv px-2">
                     <div className="text-center">
                         <h4>EDIT PROFILE</h4>
                     </div>
@@ -166,16 +169,15 @@ function EditProfile(props) {
                             <label>Are you a student or a tutor?</label>
                             <select 
                                 name="designation" 
-                                value={input.designation} 
+                                value={input.Designation} 
                                 onChange={handleChange} 
                                 placeholder="designation" 
                                 id="designation" 
                                 className="form-control"
-                                required
                             >
                                 <option value="">--Pick designation--</option>
-                                <option value="student">Student</option>
-                                <option value="tutor">Tutor</option>
+                                <option value="Student">Student</option>
+                                <option value="Tutor">Tutor</option>
                             </select>
                         </div>
                         <div className="form-group">
@@ -197,6 +199,7 @@ function EditProfile(props) {
                     </form>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

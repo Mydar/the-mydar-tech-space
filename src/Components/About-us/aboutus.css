@@ -1,0 +1,75 @@
+.aboutus {
+    color: white;
+}
+.about-us-welcome {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)) ,url('https://2018media.idtech.com/images/blog/featured/what-is-online-learning-platform-header.jpg?da32f5bf79');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 50vh;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-us-welcome p {
+    font-size: 40px;
+}
+.about-us-content {
+    width: 60%;
+    margin: 0 auto;
+    border-bottom: 1px solid rgb(37, 37, 37);
+}
+.about-us-heading {
+    text-align: center;
+    padding: 2rem;
+    border-bottom: 1px solid rgb(37, 37, 37);
+    font-size: 35px;
+}
+.quote-cards-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.quote-cards {
+    width: 250px;
+    height: 250px;
+    padding: 50px;
+    color: black;
+    background-color: rgb(224, 213, 213);
+    box-shadow: 5px 5px 5px #3b3b3b;
+    border-radius: 10px;
+    margin: 20px;
+}
+.aboutus-join-div{
+    display: flex;
+    padding: 5%;
+    justify-content: flex-end;
+    align-items: center;
+    height: 300px;
+    background-size: cover;
+    
+}
+.aboutus-join-text-div {
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: auto;
+    font-size: 20px;
+    color: #FAFAD2;
+}
+.aboutus-join-text-button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.aboutus-join-text-button-div button {
+  text-align: center;
+  border-radius: 0;
+}
+
+@media (max-width: 900px) {
+    .about-us-content {
+        width: 95%;
+        margin: 0 auto;
+    }
+}
